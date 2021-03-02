@@ -36,7 +36,8 @@ public class DataGenerator {
 
         public static String generateName() {
             Faker faker = new Faker(new Locale("ru"));
-            AtomicReference<String> randomName = new AtomicReference<>(faker.name().firstName() + " " + faker.name().lastName());
+            AtomicReference<String> randomName = new AtomicReference<>(faker.name().firstName() +
+                    faker.name().lastName());
             return randomName.get();
         }
 
