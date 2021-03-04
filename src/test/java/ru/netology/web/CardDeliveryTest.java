@@ -17,37 +17,37 @@ import static ru.netology.web.DataGenerator.Registration.generateUser;
 public class CardDeliveryTest {
 
     @BeforeEach
-    void SetUp() {
+    void setUp() {
         open("http://localhost:9999");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }
 
     @Test
     void shouldSendFormValid() {
-        User user = generateUser();
-        $("[data-test-id=city] input").setValue(user.getCity());
+        UserInfo userInfo = generateUser();
+        $("[data-test-id=city] input").setValue(userInfo.getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(user.getName());
-        $("[data-test-id=phone] input").setValue(user.getPhone());
+        $("[data-test-id=name] input").setValue(userInfo.getName());
+        $("[data-test-id=phone] input").setValue(userInfo.getPhone());
         $("[data-test-id=agreement]").click();
         $(".button").click();
-        $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15000));
+        $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("[data-test-id=success-notification]")
                 .shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateDate(8)));
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(9));
         $(".button").click();
-        $(withText("Необходимо подтверждение")).shouldBe(Condition.visible, Duration.ofSeconds(15000));
+        $(withText("Необходимо подтверждение")).shouldBe(Condition.visible, Duration.ofSeconds(15));
         $(".button__text").click();
         $("[data-test-id=success-notification]")
-                .shouldBe(Condition.visible, Duration.ofSeconds(15000))
+                .shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateDate(9)));
     }
 
     @Test
     void shouldGetErrorSendFormWithInvalidSurname() {
-        User user = generateUser();
+        UserInfo user = generateUser();
         $("[data-test-id=city] input").setValue(user.getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
