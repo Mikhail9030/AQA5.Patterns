@@ -51,7 +51,7 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(user.getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(generateUser().getName());
+        $("[data-test-id=name] input").setValue(generateUser().getFilename());
         $("[data-test-id=phone] input").setValue(user.getPhone());
         $("[data-test-id=agreement]").click();
         $(".button").click();
@@ -61,7 +61,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldGetErrorSendFormWithInvalidCity() {
-        $("[data-test-id=city] input").setValue(generateUser().getCity());
+        $("[data-test-id=city] input").setValue(generateUser().getFacility());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
         $("[data-test-id=name] input").setValue(generateUser().getName());
@@ -74,7 +74,7 @@ public class CardDeliveryTest {
     @Test
     void shouldGetErrorSendFormWithInvalidDate() {
         $("[data-test-id=city] input").setValue(generateUser().getCity());
-        $("[data-test-id=date] input").doubleClick().sendKeys("18.02.2021");
+        $("[data-test-id=date] input").setValue(generateUser().getFaked());
         $("[data-test-id=name] input").setValue(generateUser().getName());
         $("[data-test-id=phone] input").setValue(generateUser().getPhone());
         $("[data-test-id=agreement]").click();

@@ -8,8 +8,20 @@ import lombok.RequiredArgsConstructor;
 
 public class UserInfo {
     private final String city;
-    private final String user;
+    /**
+     *
+     */
+    public final String facility;
+    private final String data;
+    /**
+     *
+     */
+    public final String faked;
     private final String name;
+    /**
+     *
+     */
+    public final String filename;
     private final String phone;
 
 }
