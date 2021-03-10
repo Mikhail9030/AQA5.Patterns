@@ -16,7 +16,7 @@ public class DataGenerator {
         private static Faker faker = new Faker(new Locale("ru"));
 
         public static UserInfo generateUser() {
-            return new UserInfo(generateCity(), generateFakeCity(), generateDate(3), generateFakeDate(-3), generateName(), generateFakeName(), generatePhone());
+            return new UserInfo(generateCity(), generateName(), generatePhone());
         }
 
         public static String generateCity() {
@@ -32,10 +32,6 @@ public class DataGenerator {
         }
 
         public static String generateDate(int daysToAdd) {
-            return LocalDate.now().plusDays(daysToAdd).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        }
-
-        public static String generateFakeDate(int daysToAdd) {
             return LocalDate.now().plusDays(daysToAdd).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         }
 

@@ -11,8 +11,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.web.DataGenerator.Registration.generateDate;
-import static ru.netology.web.DataGenerator.Registration.generateUser;
+import static ru.netology.web.DataGenerator.Registration.*;
 
 public class CardDeliveryTest {
 
@@ -51,17 +50,17 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(user.getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(generateUser().getFilename());
+        $("[data-test-id=name] input").setValue(generateFakeName());
         $("[data-test-id=phone] input").setValue(user.getPhone());
         $("[data-test-id=agreement]").click();
         $(".button").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно." +
-                " Допустимы только русские буквы, пробелы и дефисы."));
+        $("[data-test-id=name] .input__sub")
+                .shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
     void shouldGetErrorSendFormWithInvalidCity() {
-        $("[data-test-id=city] input").setValue(generateUser().getFacility());
+        $("[data-test-id=city] input").setValue(generateFakeCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
         $("[data-test-id=name] input").setValue(generateUser().getName());
@@ -74,7 +73,7 @@ public class CardDeliveryTest {
     @Test
     void shouldGetErrorSendFormWithInvalidDate() {
         $("[data-test-id=city] input").setValue(generateUser().getCity());
-        $("[data-test-id=date] input").setValue(generateUser().getFaked());
+        $("[data-test-id=date] input").setValue(generateDate(-3));
         $("[data-test-id=name] input").setValue(generateUser().getName());
         $("[data-test-id=phone] input").setValue(generateUser().getPhone());
         $("[data-test-id=agreement]").click();
