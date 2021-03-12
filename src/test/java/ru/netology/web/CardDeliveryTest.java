@@ -63,7 +63,7 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(generateFakeCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(generateUser().getName());
+        $("[data-test-id=name] input").setValue(generateName());
         $("[data-test-id=phone] input").setValue(generateUser().getPhone());
         $("[data-test-id=agreement]").click();
         $(".button").click();
@@ -74,7 +74,7 @@ public class CardDeliveryTest {
     void shouldGetErrorSendFormWithInvalidDate() {
         $("[data-test-id=city] input").setValue(generateUser().getCity());
         $("[data-test-id=date] input").setValue(generateDate(-3));
-        $("[data-test-id=name] input").setValue(generateUser().getName());
+        $("[data-test-id=name] input").setValue(generateName());
         $("[data-test-id=phone] input").setValue(generateUser().getPhone());
         $("[data-test-id=agreement]").click();
         $(".button").click();
@@ -98,7 +98,7 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(generateUser().getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(generateUser().getName());
+        $("[data-test-id=name] input").setValue(generateName());
         $("[data-test-id=phone] input").setValue("");
         $("[data-test-id=agreement]").click();
         $(".button").click();
@@ -110,7 +110,7 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(generateUser().getCity());
         $(".calendar-input input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $(".calendar-input input").setValue(generateDate(8));
-        $("[data-test-id=name] input").setValue(generateUser().getName());
+        $("[data-test-id=name] input").setValue(generateName());
         $("[data-test-id=phone] input").setValue(generateUser().getPhone());
         $(".button").click();
         $("[data-test-id='agreement'].input_invalid .checkbox__text")
